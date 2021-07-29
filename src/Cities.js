@@ -11,6 +11,7 @@ class Cities extends React.Component {
       long: 0,
       renderError: false,
       errorMessage: '',
+      displayMap: false,
     }
   }
 
@@ -30,6 +31,7 @@ class Cities extends React.Component {
         lat: cityResults.data[0].lat,
         long: cityResults.data[0].lon,
         city: cityResults.data[0].display_name,
+        displayMap: true,
         renderError: false,
       });
     } catch (error) {
@@ -42,7 +44,7 @@ class Cities extends React.Component {
   }
 
   render() {
-
+    let imgSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.long}&zoom=13`;    
     return (
       <>
         <h1>City Explorer</h1>
@@ -53,6 +55,7 @@ class Cities extends React.Component {
 
         {this.state.renderLatLong ? <h3>City: {this.state.city}: lat: {this.state.lat}, long: {this.state.long}</h3> : ''}
         {this.state.renderError ? <h2>{this.state.errorMessage}</h2> : ''}
+        {this.state.displayMap ? <img src={imgSrc} alt={this.state.city}/> : ''}
       </>
     );
   }
