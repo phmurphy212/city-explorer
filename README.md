@@ -12,25 +12,24 @@ tbd
 
 ## Architecture
 
-[UML Design](img/uml.png)
+[UML Design](img/uml.jpg)
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
-
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+[Got Image and Location Data Rendered 7/28](https://github.com/phmurphy212/city-explorer/pull/2)
 
 ## Credit and Collaborations
 
 * Jamison 'Brutal' McGrath
+* Charlie Fadness
 
 ________________________________
 
-Name of feature: ________________________________
+Name of feature: City Explorer
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 3.5 hours
 
-Start time: _____
+Start time: 7:00
 
-Finish time: _____
+Finish time: 9:49
 
-Actual time needed to complete: _____
+Actual time needed to complete: 2:50
