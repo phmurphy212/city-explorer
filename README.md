@@ -1,7 +1,7 @@
-# Project Name
+# City Explorer
 
 **Author**: Phil Murphy
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 1.0.0 [Deployed Site: https://pane-city-explorer.netlify.app](https://pane-city-explorer.netlify.app)
 
 ## Overview
 Not actually sure what this app is going to do just yet
