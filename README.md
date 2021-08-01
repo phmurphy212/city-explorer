@@ -21,6 +21,8 @@ tbd
 
 * Jamison 'Brutal' McGrath
 * Charlie Fadness
+* Mark Thanadabouth
+* Willem Jacobs (the real MVP)
 
 ________________________________
 

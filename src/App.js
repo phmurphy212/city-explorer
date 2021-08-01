@@ -1,6 +1,5 @@
 import React from 'react';
 import Cities from './Cities.js';
-// import Weather from './Weather.js';
 import './App.css';
 
 
@@ -10,7 +9,6 @@ class App extends React.Component {
     return (
       <>
         <Cities />
-        {/* <Weather /> */}
         </>
     )
   }
