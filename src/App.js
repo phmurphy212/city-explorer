@@ -1,14 +1,17 @@
 import React from 'react';
 import Cities from './Cities.js';
-// import axios from 'axios';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container'
+
 
 class App extends React.Component {
 
   render() {
-    console.log(this.state)
     return (
-      <Cities />
+      <Container>
+        <Cities />
+      </Container>
     )
   }
 }
