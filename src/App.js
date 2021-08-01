@@ -1,14 +1,17 @@
 import React from 'react';
 import Cities from './Cities.js';
-// import axios from 'axios';
+// import Weather from './Weather.js';
 import './App.css';
+
 
 class App extends React.Component {
 
   render() {
-    console.log(this.state)
     return (
-      <Cities />
+      <>
+        <Cities />
+        {/* <Weather /> */}
+        </>
     )
   }
 }
