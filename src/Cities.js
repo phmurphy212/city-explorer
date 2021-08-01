@@ -1,7 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import Weather from './Weather.js';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container'
+import { Card } from 'react-bootstrap';   
+import './Cities.css';
 
 class Cities extends React.Component {
   constructor(props) {
@@ -69,22 +73,29 @@ class Cities extends React.Component {
   render() {
     let imgSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.long}&zoom=13`;
     return (
-      <>
-        <h1>City Explorer</h1>
-        <form onSubmit={this.getCityInfo}>
-          <input onChange={this.handleChange} />
-          <button>Explore!</button>
-        </form>
-
-        {this.state.renderLatLong ? <h3>City: {this.state.city}: lat: {this.state.lat}, long: {this.state.long}</h3> : ''}
-        {this.state.renderError ? <h2>{this.state.errorMessage}</h2> : ''}
-        {this.state.displayMap ? <img src={imgSrc} alt={this.state.city} /> : ''}
-        {this.state.displayWx ?
-          <Weather
-            weather={this.state.weather}
-          />
-          : ''}
-      </>
+      <Container className="cities">
+        <Card style={{width: '18rem'}}>
+          <h1>City Explorer</h1>
+          <Form inline>
+          <Form.Label>City: </Form.Label>
+          <Form.Control as="input" onChange={this.handleChange} placeholder="Seattle, Paris, or Amman " />
+          <Button 
+            type="submit"
+            onClick={this.getCityInfo}
+          > Explore! </Button>
+          </Form>
+          <Card.Body>
+            {this.state.renderLatLong ? <h3>City: {this.state.city}: lat: {this.state.lat}, long: {this.state.long}</h3> : ''}
+            {this.state.renderError ? <h2>{this.state.errorMessage}</h2> : ''}
+            {this.state.displayMap ? <Card.Img variant="bottom" src={imgSrc} alt={this.state.city} /> : ''}
+            {this.state.displayWx ?
+            <Weather
+              weather={this.state.weather}
+            />
+            : ''}
+          </Card.Body>
+        </Card>
+      </Container>
     );
   }
 }
