@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import Weather from './Weather.js';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container'
-import { Card } from 'react-bootstrap';   
+import Container from 'react-bootstrap/Container'  
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+
+import Weather from './Weather.js';
 import './Cities.css';
 
 class Cities extends React.Component {
@@ -15,11 +16,13 @@ class Cities extends React.Component {
       renderError: false,
       displayMap: false,
       displayWx: false,
+      displayMovie: false,
       city: '',
       errorMessage: '',
       lat: 0,
       long: 0,
       weather: [],
+      movie: [],
     }
   }
 
@@ -32,7 +35,7 @@ class Cities extends React.Component {
 
   getWxInfo = async () => {
     try {
-      let weatherResults = await axios.get(`http://localhost:3001/weather?city=${this.state.city}`);
+      let weatherResults = await axios.get(`http://localhost:3001/weather?lat=${this.state.lat}&lon=${this.state.long}`);
       this.setState({
         weather: weatherResults.data,
       });
@@ -47,6 +50,19 @@ class Cities extends React.Component {
     }
   }
 
+  getMovieInfo = async () => {
+    try {
+    let movieResults = await axios.get(`http://localhost:3001/movies?query=${this.state.weather.data.data.city}`);
+    this.setState({
+      movie: movieResults.data,
+      displayMovie: true,
+    })
+  } catch (error) {
+    this.setState({
+      displayMovie: false,
+    })
+  }
+}
   getCityInfo = async (e) => {
     e.preventDefault();
     try {
@@ -68,13 +84,19 @@ class Cities extends React.Component {
       })
     };
     this.getWxInfo();
+    this.getMovieInfo();
   }
 
+
+
   render() {
+    console.log(this.state.movie);
     let imgSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.long}&zoom=13`;
+    
+    let movieSrc = `https://image.tmdb.org/t/p/w500${this.state.movie.src}`;
+
     return (
       <Container className="cities">
-        <Card style={{width: '18rem'}}>
           <h1>City Explorer</h1>
           <Form inline>
           <Form.Label>City: </Form.Label>
@@ -84,17 +106,22 @@ class Cities extends React.Component {
             onClick={this.getCityInfo}
           > Explore! </Button>
           </Form>
-          <Card.Body>
             {this.state.renderLatLong ? <h3>City: {this.state.city}: lat: {this.state.lat}, long: {this.state.long}</h3> : ''}
+
+
             {this.state.renderError ? <h2>{this.state.errorMessage}</h2> : ''}
-            {this.state.displayMap ? <Card.Img variant="bottom" src={imgSrc} alt={this.state.city} /> : ''}
+
+
+            {this.state.displayMap ? <img src={imgSrc} alt={this.state.city} /> : ''}
+
+
+            {this.state.displayMovie ? <img src={movieSrc} alt={this.state.movie.data.alt} /> : ''}
+            
             {this.state.displayWx ?
             <Weather
               weather={this.state.weather}
             />
             : ''}
-          </Card.Body>
-        </Card>
       </Container>
     );
   }
