@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import Weather from './Weather.js';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container'
-import { Card } from 'react-bootstrap';  
+import Container from 'react-bootstrap/Container'  
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+
+import Weather from './Weather.js';
 import './Cities.css';
 
 class Cities extends React.Component {
@@ -52,9 +52,9 @@ class Cities extends React.Component {
 
   getMovieInfo = async () => {
     try {
-    let movieResults = await axios.get(`http://localhost:3001/movies?city=${this.state.city}`);
+    let movieResults = await axios.get(`http://localhost:3001/movies?query=${this.state.weather.data.data.city}`);
     this.setState({
-      movie: movieResults.data.results,
+      movie: movieResults.data,
       displayMovie: true,
     })
   } catch (error) {
@@ -90,7 +90,11 @@ class Cities extends React.Component {
 
 
   render() {
+    console.log(this.state.movie);
     let imgSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.long}&zoom=13`;
+    
+    let movieSrc = `https://image.tmdb.org/t/p/w500${this.state.movie.src}`;
+
     return (
       <Container className="cities">
           <h1>City Explorer</h1>
@@ -111,7 +115,7 @@ class Cities extends React.Component {
             {this.state.displayMap ? <img src={imgSrc} alt={this.state.city} /> : ''}
 
 
-            {this.state.displayMovie ? <img src={this.state.movie.src} alt={this.state.movie.title} /> : ''}
+            {this.state.displayMovie ? <img src={movieSrc} alt={this.state.movie.data.alt} /> : ''}
             
             {this.state.displayWx ?
             <Weather

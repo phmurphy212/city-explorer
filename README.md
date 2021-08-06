@@ -2,6 +2,7 @@
 
 **Author**: Phil Murphy
 **Version**: 1.0.0 [Deployed Site: https://pane-city-explorer.netlify.app](https://pane-city-explorer.netlify.app)
+             2.0.0 []
 
 ## Overview
 Not actually sure what this app is going to do just yet
