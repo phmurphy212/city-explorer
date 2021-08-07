@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container'  
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import Container from 'react-bootstrap/Container'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Weather from './Weather.js';
 import './Cities.css';
@@ -52,17 +52,18 @@ class Cities extends React.Component {
 
   getMovieInfo = async () => {
     try {
-    let movieResults = await axios.get(`http://localhost:3001/movies?search=${this.state.city}`);
-    this.setState({
-      movie: movieResults.data,
-      displayMovie: true,
-    })
-  } catch (error) {
-    this.setState({
-      displayMovie: false,
-    })
+      let movieResults = await axios.get(`http://localhost:3001/movies?search=${this.state.city}`);
+      console.log(movieResults.data);
+      this.setState({
+        movie: movieResults.data,
+        displayMovie: true,
+      })
+    } catch (error) {
+      this.setState({
+        displayMovie: false,
+      })
+    }
   }
-}
   getCityInfo = async (e) => {
     e.preventDefault();
     try {
@@ -92,36 +93,46 @@ class Cities extends React.Component {
   render() {
     console.log(this.state.movie);
     let imgSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.long}&zoom=13`;
-    
-    let movieSrc = `https://image.tmdb.org/t/p/w500${this.state.movie.src}`;
+
+    // let movieSrc = `https://image.tmdb.org/t/p/w500${this.state.movie.src}`;
 
     return (
       <Container className="cities">
-          <h1>City Explorer</h1>
-          <Form inline>
+        <h1>City Explorer</h1>
+        <Form inline>
           <Form.Label>City: </Form.Label>
           <Form.Control as="input" onChange={this.handleChange} placeholder="Seattle, Paris, or Amman " />
-          <Button 
+          <Button
             type="submit"
             onClick={this.getCityInfo}
           > Explore! </Button>
-          </Form>
-            {this.state.renderLatLong ? <h3>City: {this.state.city}: lat: {this.state.lat}, long: {this.state.long}</h3> : ''}
+        </Form>
+        {this.state.renderLatLong ? <h3>City: {this.state.city}: lat: {this.state.lat}, long: {this.state.long}</h3> : ''}
 
 
-            {this.state.renderError ? <h2>{this.state.errorMessage}</h2> : ''}
+        {this.state.renderError ? <h2>{this.state.errorMessage}</h2> : ''}
 
 
-            {this.state.displayMap ? <img src={imgSrc} alt={this.state.city} /> : ''}
+        {this.state.displayMap ? <img src={imgSrc} alt={this.state.city} /> : ''}
 
 
-            {this.state.displayMovie ? <img src={movieSrc} alt={this.state.movie.data.alt} /> : ''}
-            
-            {this.state.displayWx ?
-            <Weather
-              weather={this.state.weather}
-            />
-            : ''}
+        {
+          this.state.displayMovie
+            ? this.state.movie.map((movie, index) => (
+              movie.src ? <img
+              key = {index}
+              src={movie.src}
+              alt={movie.alt} 
+              /> : ''
+              ))
+            : ''
+        }
+
+        {this.state.displayWx ?
+          <Weather
+            weather={this.state.weather}
+          />
+          : ''}
       </Container>
     );
   }
