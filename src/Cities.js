@@ -35,7 +35,7 @@ class Cities extends React.Component {
 
   getWxInfo = async () => {
     try {
-      let weatherResults = await axios.get(`http://localhost:3001/weather?lat=${this.state.lat}&lon=${this.state.long}`);
+      let weatherResults = await axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND}/weather?lat=${this.state.lat}&lon=${this.state.long}`);
       this.setState({
         weather: weatherResults.data,
       });
@@ -52,7 +52,7 @@ class Cities extends React.Component {
 
   getMovieInfo = async () => {
     try {
-      let movieResults = await axios.get(`http://localhost:3001/movies?search=${this.state.city}`);
+      let movieResults = await axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND}/movies?search=${this.state.city}`);
       console.log(movieResults.data);
       this.setState({
         movie: movieResults.data,
