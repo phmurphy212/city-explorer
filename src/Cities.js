@@ -52,7 +52,7 @@ class Cities extends React.Component {
 
   getMovieInfo = async () => {
     try {
-    let movieResults = await axios.get(`http://localhost:3001/movies?query=${this.state.weather.data.data.city}`);
+    let movieResults = await axios.get(`http://localhost:3001/movies?search=${this.state.city}`);
     this.setState({
       movie: movieResults.data,
       displayMovie: true,
