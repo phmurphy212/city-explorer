@@ -100,12 +100,12 @@ class Cities extends React.Component {
     return (
       <Container className="cities">
         <Row>
-          <Col>
-            <h1>City Explorer</h1>
-            <Form inline>
-              <Form.Label>City: </Form.Label>
+            <Col>
+            <Form>
+              <Form.Label>City:</Form.Label>
               <Form.Control as="input" onChange={this.handleChange} placeholder="Search A City" />
               <Button
+                variant="dark"
                 type="submit"
                 onClick={this.getCityInfo}
               > Explore! </Button>
@@ -130,15 +130,15 @@ class Cities extends React.Component {
             }
           </Col>
           <Col>
+          {
+            this.state.displayMovie ?
+              <Movies
+                movie={this.state.movie}
+              /> : ''
+          }
             {
               this.state.displayMap ?
                 <img src={imgSrc} alt={this.state.city} /> : ''
-            }
-            {
-              this.state.displayMovie ?
-                <Movies
-                  movie={this.state.movie}
-                /> : ''
             }
           </Col>
         </Row>
