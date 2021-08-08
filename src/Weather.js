@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './Weather.css';
 
 class Weather extends React.Component {
   render() {
@@ -9,12 +9,13 @@ class Weather extends React.Component {
       <>
         {this.props.weather.map((city, index) =>
           <Card
-            key={index}
-            variant="top"
-            bg="grey">
+            className="weather"
+            key={index} >
             <Card.Body>
               <ListGroup variant="flush">
-                <ListGroup.Item key={index}>
+                <ListGroup.Item 
+                key={index}
+                variant="light">
                   {city.description}
                 </ListGroup.Item>
               </ListGroup>
