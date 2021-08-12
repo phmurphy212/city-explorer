@@ -18,11 +18,16 @@ class Weather extends React.Component {
                 variant="light">
                   {city.description}
                 </ListGroup.Item>
+                <ListGroup.Item 
+                key={index}
+                variant="light">
+                  {city.time}
+                </ListGroup.Item>
               </ListGroup>
             </Card.Body>
           </Card>
         )
-        };
+        }
       </>
     )
   }
