@@ -5,7 +5,7 @@
 
 * Deployed Frontend on Netlify [https://pane-city-explorer.netlify.app](https://pane-city-explorer.netlify.app)
 
-* Deployed Backend on Heroku
+* Deployed Backend on Heroku [https://pane-city-explorer.herokuapp.com/](https://pane-city-explorer.herokuapp.com/)
 
 ## Overview
 
@@ -30,7 +30,7 @@ Alright, this is an app that allows you to Search a specific city, and then get 
 
 [Got Image and Location Data Rendered 7/28](https://github.com/phmurphy212/city-explorer/pull/2)
 
-[Got the movies rendering and css...okay 8/11](#)
+[Got the movies rendering and css...okay 8/11](https://github.com/phmurphy212/city-explorer/pull/10)
 
 ## Credit and Collaborations
 
