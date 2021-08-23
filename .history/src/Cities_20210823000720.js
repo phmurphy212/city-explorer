@@ -92,8 +92,9 @@ class Cities extends React.Component {
     this.getMovieInfo();
   }
 
+
+
   render() {
-    console.log(this.state.weather);
     let imgSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.long}&zoom=13`;
 
 

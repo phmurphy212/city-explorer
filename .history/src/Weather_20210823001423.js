@@ -4,7 +4,7 @@ import './Weather.css';
 
 class Weather extends React.Component {
   render() {
-    console.log(`${this.props.weather.high_temp}`);
+    console.log(`${this.props.weather}`);
     return (
       <>
         {this.props.weather.map((city, index) =>
