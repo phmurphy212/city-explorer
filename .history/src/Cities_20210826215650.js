@@ -39,7 +39,7 @@ class Cities extends React.Component {
 
   getWxInfo = async () => {
     try {
-      let weatherResults = await axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND}/weather?lat=${this.state.lat}&lon=${this.state.long}`);
+      let weatherResults = await axios.get(`${process.env.REACT_APP_LOCAL_BACKEND}/weather?lat=${this.state.lat}&lon=${this.state.long}`);
       this.setState({
         weather: weatherResults.data,
       });

@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 
 class WeatherDay extends React.Component {
   render() {
+    console.log(`${this.props.city.time}`)
     return (
       <>
         <Card>

@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 
 class WeatherDay extends React.Component {
   render() {
+    console.log(`${this.props.city.time}`)
     return (
       <>
         <Card>
@@ -16,11 +17,11 @@ class WeatherDay extends React.Component {
               </ListGroup.Item>
               <ListGroup.Item
                 variant="light">
-                High: {this.props.city.high} ° C
+                {this.props.city.high} ° C
               </ListGroup.Item>
               <ListGroup.Item
                 variant="light">
-                Low: {this.props.city.low} ° C
+                {this.props.city.low} ° C
               </ListGroup.Item>
               <ListGroup.Item
                 variant="light">

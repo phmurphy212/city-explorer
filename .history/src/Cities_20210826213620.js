@@ -39,14 +39,14 @@ class Cities extends React.Component {
 
   getWxInfo = async () => {
     try {
-      let weatherResults = await axios.get(`${process.env.REACT_APP_DEPLOYED_BACKEND}/weather?lat=${this.state.lat}&lon=${this.state.long}`);
+      let weatherResults = await axios.get(`${REACT_APP_LOCAL_BACKEND}/weather?lat=${this.state.lat}&lon=${this.state.long}`);
       this.setState({
         weather: weatherResults.data,
       });
     } catch (error) {
       this.setState({
         renderError: true,
-        errorMessage: `An Error Occurred: ${error.response.status}, ${error.response.data.error}`,
+        // errorMessage: `An Error Occurred: ${error.response.status}, ${error.response.data.error}`,
         displayWx: false,
         displayMap: false,
         renderLatLong: false,
@@ -84,7 +84,7 @@ class Cities extends React.Component {
     } catch (error) {
       this.setState({
         renderError: true,
-        errorMessage: `An Error Occurred: ${error.response.status}, ${error.response.data.error}`,
+        // errorMessage: `An Error Occurred: ${error.response.status}, ${error.response.data.error}`,
         renderLatLong: false,
       })
     };
@@ -93,6 +93,7 @@ class Cities extends React.Component {
   }
 
   render() {
+    console.log(this.state.weather);
     let imgSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.long}&zoom=13`;
 
 
