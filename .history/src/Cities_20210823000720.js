@@ -46,7 +46,7 @@ class Cities extends React.Component {
     } catch (error) {
       this.setState({
         renderError: true,
-        errorMessage: `An Error Occurred: ${error.response.status}, ${error.response.data.error}`,
+        // errorMessage: `An Error Occurred: ${error.response.status}, ${error.response.data.error}`,
         displayWx: false,
         displayMap: false,
         renderLatLong: false,
@@ -84,13 +84,15 @@ class Cities extends React.Component {
     } catch (error) {
       this.setState({
         renderError: true,
-        errorMessage: `An Error Occurred: ${error.response.status}, ${error.response.data.error}`,
+        // errorMessage: `An Error Occurred: ${error.response.status}, ${error.response.data.error}`,
         renderLatLong: false,
       })
     };
     this.getWxInfo();
     this.getMovieInfo();
   }
+
+
 
   render() {
     let imgSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.long}&zoom=13`;
